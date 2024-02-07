@@ -6,7 +6,6 @@ import html2canvas from "html2canvas";
 import DownloadIcon from "./assets/download.svg";
 
 export const MainBody = () => {
-
   //save button
   const componentRef = useRef();
 
@@ -39,7 +38,7 @@ export const MainBody = () => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setCurrData({...currData, imagePath: imageUrl})
+      setCurrData({ ...currData, imagePath: imageUrl });
     }
   };
   const handleJobProfile = (e) => {
@@ -172,14 +171,14 @@ export const MainBody = () => {
   const addAch = () => {
     const achievement = "";
     const newAchievement = [...achievements, achievement];
-    setAchievements(newAchievement) 
-  }
-  const handleAchievement = (e,id) => {
+    setAchievements(newAchievement);
+  };
+  const handleAchievement = (e, id) => {
     const updatedAchievement = [...achievements];
     updatedAchievement[id] = e.target.value;
     setAchievements(updatedAchievement);
-    setCurrData({...currData, achievements: updatedAchievement});
-  }
+    setCurrData({ ...currData, achievements: updatedAchievement });
+  };
 
   //mainBody Return
   return (
@@ -264,7 +263,10 @@ export const MainBody = () => {
 
       <div className="personInfoBox">
         <h2>Skills</h2>
-        <button style={{ margin: "20px" }} onClick={addSkill}>
+        <button
+          style={{ margin: "20px", backgroundColor: "#1a1a1a", color: "white" }}
+          onClick={addSkill}
+        >
           Add a Skill
         </button>
         {useStateSkills.map((skill, id) => {
@@ -276,14 +278,26 @@ export const MainBody = () => {
                 type="text"
                 onChange={(e) => handleSkill(e, id)}
               ></input>
-              <button onClick={() => handleDelete(id)}>X</button>
+              <button
+                style={{
+                  margin: "20px",
+                  backgroundColor: "#1a1a1a",
+                  color: "white",
+                }}
+                onClick={() => handleDelete(id)}
+              >
+                X
+              </button>
             </div>
           );
         })}
       </div>
       <div className="personInfoBox">
         <h2>Projects</h2>
-        <button style={{ margin: "20px" }} onClick={addProj}>
+        <button
+          style={{ margin: "20px", backgroundColor: "#1a1a1a", color: "white" }}
+          onClick={addProj}
+        >
           Add Project
         </button>
         {project.map((proj, id) => {
@@ -309,7 +323,10 @@ export const MainBody = () => {
       </div>
       <div className="personInfoBox">
         <h2>Work Experience</h2>
-        <button style={{ margin: "20px" }} onClick={addExp}>
+        <button
+          style={{ margin: "20px", backgroundColor: "#1a1a1a", color: "white" }}
+          onClick={addExp}
+        >
           Add Experience
         </button>
         {exp.map((experience, id) => {
@@ -355,7 +372,10 @@ export const MainBody = () => {
 
       <div className="personInfoBox">
         <h2>Achievements</h2>
-        <button style={{ margin: "20px" }} onClick={addAch}>
+        <button
+          style={{ margin: "20px", backgroundColor: "#1a1a1a", color: "white" }}
+          onClick={addAch}
+        >
           Add achievement
         </button>
         {achievements.map((achievement, id) => {
