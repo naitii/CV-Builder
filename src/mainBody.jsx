@@ -5,78 +5,78 @@ import CvPreview from "./livePreview";
 import html2canvas from "html2canvas";
 import DownloadIcon from "./assets/download.svg";
 
+export var updatedData = {};
+
 export const MainBody = () => {
-  //save button
-  const componentRef = useRef();
-
-  const downloadImage = async () => {
-    const canvas = await html2canvas(componentRef.current, {
-      logging: true,
-      useCORS: true,
-    });
-    const imgData = canvas.toDataURL("image/png");
-
-    const link = document.createElement("a");
-    link.href = imgData;
-    link.download = "download.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  //initializing the data value
   const [currData, setCurrData] = useState(data);
 
   //personal-data block
   const changeFName = (e) => {
     setCurrData({ ...currData, firstName: e.target.value });
+    updatedData = currData;
   };
   const changeLName = (e) => {
     setCurrData({ ...currData, lastName: e.target.value });
+    updatedData = currData;
+      console.log(updatedData);
+
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setCurrData({ ...currData, imagePath: imageUrl });
+      updatedData = currData;
+      console.log(updatedData);
     }
   };
   const handleJobProfile = (e) => {
     setCurrData({ ...currData, jobProfile: e.target.value });
+    updatedData = currData;
   };
   const handleObj = (e) => {
     setCurrData({ ...currData, description: e.target.value });
+    updatedData = currData;
   };
 
   //contact details block
   const handleMobNo = (e) => {
     setCurrData({ ...currData, phoneNo: e.target.value });
+    updatedData = currData;
   };
   const handleMail = (e) => {
     setCurrData({ ...currData, mail: e.target.value });
+    updatedData = currData;
   };
   const handleAddress = (e) => {
     setCurrData({ ...currData, place: e.target.value });
+    updatedData = currData;
   };
   const handleLink = (e) => {
     setCurrData({ ...currData, link: e.target.value });
+    updatedData = currData;
   };
 
   //education block
   const handleSchool = (e) => {
     setCurrData({ ...currData, school: e.target.value });
+    updatedData = currData;
   };
   const handleDegree = (e) => {
     setCurrData({ ...currData, degree: e.target.value });
+    updatedData = currData;
   };
   const handleYear = (e) => {
     setCurrData({ ...currData, gradYear: e.target.value });
+    updatedData = currData;
   };
   const handle12 = (e) => {
     setCurrData({ ...currData, twelth: e.target.value });
+    updatedData = currData;
   };
   const handle10 = (e) => {
     setCurrData({ ...currData, tenth: e.target.value });
+    updatedData = currData;
   };
 
   //skills
@@ -90,12 +90,14 @@ export const MainBody = () => {
     updatedSkills[id] = e.target.value;
     setSkills(updatedSkills);
     setCurrData({ ...currData, skills: updatedSkills });
+    updatedData = currData;
   };
   const handleDelete = (id) => {
     const afterDel = [...useStateSkills];
     afterDel.splice(id, 1);
     setSkills(afterDel);
     setCurrData({ ...currData, skills: afterDel });
+    updatedData = currData;
   };
 
   //projects
@@ -113,13 +115,14 @@ export const MainBody = () => {
     updateProj[id].projName = e.target.value;
     setProject(updateProj);
     setCurrData({ ...currData, projects: updateProj });
+    updatedData = currData;
   };
   const handleProjDes = (e, id) => {
     const updateProj = [...project];
     updateProj[id].projInfo = e.target.value;
     setProject(updateProj);
     setCurrData({ ...currData, projects: updateProj });
-    console.log(currData);
+    updatedData = currData;
   };
 
   //experience
@@ -140,30 +143,35 @@ export const MainBody = () => {
     updateExpC[id].company = e.target.value;
     setExp(updateExpC);
     setCurrData({ ...currData, experience: updateExpC });
+    updatedData = currData;
   };
   const handlePosition = (e, id) => {
     const updateExpC = [...exp];
     updateExpC[id].position = e.target.value;
     setExp(updateExpC);
     setCurrData({ ...currData, experience: updateExpC });
+    updatedData = currData;
   };
   const handleStartDate = (e, id) => {
     const updateExpC = [...exp];
     updateExpC[id].startDate = e.target.value;
     setExp(updateExpC);
     setCurrData({ ...currData, experience: updateExpC });
+    updatedData = currData;
   };
   const handleEndDate = (e, id) => {
     const updateExpC = [...exp];
     updateExpC[id].endDate = e.target.value;
     setExp(updateExpC);
     setCurrData({ ...currData, experience: updateExpC });
+    updatedData = currData;
   };
   const handleRole = (e, id) => {
     const updateExpC = [...exp];
     updateExpC[id].description = e.target.value;
     setExp(updateExpC);
     setCurrData({ ...currData, experience: updateExpC });
+    updatedData = currData;
   };
 
   //achievements
@@ -178,6 +186,7 @@ export const MainBody = () => {
     updatedAchievement[id] = e.target.value;
     setAchievements(updatedAchievement);
     setCurrData({ ...currData, achievements: updatedAchievement });
+    updatedData = currData;
   };
 
   //mainBody Return
@@ -393,13 +402,9 @@ export const MainBody = () => {
         })}
       </div>
 
-      <div ref={componentRef}>
+      <div>
         <CvPreview id="pdf-content" data={currData} />
       </div>
-      {/* <div className="save" onClick={downloadImage}>
-        <img src={DownloadIcon} alt="Save" />
-        <h4>Save</h4>
-      </div> */}
     </>
   );
 };

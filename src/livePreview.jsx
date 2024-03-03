@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-const CvPreview = ({ data }) => {
+const CvPreview = ({ data }, {bg}) => {
   return (
-    <div className="preview">
+    <div className="preview" style={{ backgroungColor: bg }}>
       <div className="leftPanel">
         <div className="profilePhoto">
           <img src={data && data.imagePath} className="photo" alt="Profile" />
@@ -18,14 +18,14 @@ const CvPreview = ({ data }) => {
         <h3 className="education">Class XII, {data && data.twelth}</h3>
         <h3 className="education">Class X, {data && data.tenth}</h3>
 
-        {data.skills.length > 0 && (
+        {data?.skills?.length > 0 && (
           <h2 className="heading" style={{ color: "white", marginTop: "20px" }}>
             Skills:
           </h2>
         )}
 
         <div className="skill">
-          {data.skills.map((skill, id) => (
+          {data?.skills?.map((skill, id) => (
             <span className="skillName" key={id}>
               {skill}
             </span>
@@ -102,7 +102,11 @@ const CvPreview = ({ data }) => {
               className="contantSpan"
               href={"https://www." + (data && data.link)}
             >
-              {data && data.link}
+              {data?.link?.includes("linkedin")
+                ? "LinkedIn"
+                : data?.link?.includes("github")
+                ? "Github"
+                : data && data.link}
             </a>
           </div>
         </div>
@@ -111,12 +115,12 @@ const CvPreview = ({ data }) => {
           <p>{data && data.description}</p>
         </div>
         <div>
-          {data.experience.length > 0 && (
+          {data?.experience?.length > 0 && (
             <h2 className="heading">Work Experience</h2>
           )}
 
           <div className="ExperiencesBox">
-            {data.experience.map((exp, index) => (
+            {data?.experience?.map((exp, index) => (
               <div className="experience" key={index}>
                 <div>
                   <span className="fomTO">
@@ -124,7 +128,7 @@ const CvPreview = ({ data }) => {
                   </span>
                 </div>
                 <div>
-                  {data.experience.length > 0 && (
+                  {data?.experience?.length > 0 && (
                     <strong>{exp.position}</strong>
                   )}
                   <h2 className="company">{exp.company}</h2>
@@ -133,21 +137,21 @@ const CvPreview = ({ data }) => {
               </div>
             ))}
           </div>
-          {data.projects.length > 0 && (
+          {data?.projects?.length > 0 && (
             <h2 className="heading">Key Projects</h2>
           )}
           <div className="ProjBox">
-            {data.projects.map((proj, index) => (
+            {data?.projects?.map((proj, index) => (
               <div className="projects" key={index}>
                 <h2 className="projName">{proj.projName}</h2>
                 <p>{proj.projInfo}</p>
               </div>
             ))}
-            {data.achievements.length > 0 && (
+            {data?.achievements?.length > 0 && (
               <h2 className="heading">Achievements</h2>
             )}
             <div className="AchiveBox">
-              {data.achievements.map((achieve, id) => (
+              {data?.achievements?.map((achieve, id) => (
                 <li className="achievement" key={id}>
                   {achieve}
                 </li>
